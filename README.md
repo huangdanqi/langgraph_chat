@@ -5,6 +5,11 @@ use your owe key.\
 
 os.environ['OPENAI_API_KEY'] = ''\
 os.environ['TAVILY_API_KEY'] = ''
+# Result showing
+
+
+https://github.com/user-attachments/assets/252f86e9-d485-451f-abed-287ca6362721
+
 
 # Set virtual environment
 python -m pipenv shell
