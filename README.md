@@ -1,3 +1,11 @@
+# Windons systeme 
+You can use the code to build chatbot streaming output, I only used the agent chunks and I didn't use supervisor chunks \
+, the only thing you need to modify is in Backend/langgraph_agnet/views.py\
+use your owe key.\
+
+os.environ['OPENAI_API_KEY'] = ''\
+os.environ['TAVILY_API_KEY'] = ''
+
 # Set virtual environment
 python -m pipenv shell
 # Backend
@@ -12,12 +20,14 @@ python manage.py startapp langgraph_agent
 
 ### Configure the Django settings.py for Websockets
 pip install daphne \
+pip install channels\
 
 In settings.py, add langchain_stream and daphne to INSTALLED_APPS:\
 
 Warning: `daphne` must be listed before django.contrib.staticfiles in INSTALLED_APPS.\
 
 'daphne',\
+'channels',\
  ...,\
 'langgraph_agent',
 ### Replace the WSGI application line with an ASGI configuration to enable asynchronous communication.
@@ -31,6 +41,10 @@ Please see the code
 pip install -U langchain_community langchain_anthropic langchain_experimental\
 pip install langchain-openai\
 pip install langgraph==0.2.73\
+I set the key in views.py , you should change your key
+os.environ['OPENAI_API_KEY'] = ''
+os.environ['TAVILY_API_KEY'] = ''
+
 
 ### Set Up Websocket Routing
 Define how websocket connections are handled by creating routing.py and urls.py in your langgraph_agent app.\
@@ -79,5 +93,19 @@ Name the project frontend, select 'Vue' as the framework, and choose 'JavaScript
 cd frontend\
 Install the required React packages:\
 npm install
+## vue setting
+please see the code, change app.vue code, in  component folder use ChatComponent.vue.\
+I change the index.html this code "'\<link rel="icon" type="image/svg+xml" href="/vite.svg" />'" to use my favorite icon, \
+the changed code :"\<link rel="icon" type="image/svg+xml" href="/src/assets/socks.ico" />"\
+I add this icon named socks.ico in src/assests folder
+
+# RUN SERVER
+
+In different terminal:\
+npm run dev\
+python .\manage.py runserver
+
+
+
 
 
